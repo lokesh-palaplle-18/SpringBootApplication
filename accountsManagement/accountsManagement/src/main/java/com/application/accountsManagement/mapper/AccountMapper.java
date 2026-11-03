@@ -7,8 +7,10 @@ import com.application.accountsManagement.model.CustomerDto;
 
 public final class AccountMapper {
 
-    private AccountMapper() {}
+    private AccountMapper() {
+    }
 
+    // DTO to Entity - CREATE
     public static Accounts customerDtoToAccountEntity(
             CustomerDto dto) {
 
@@ -18,6 +20,7 @@ public final class AccountMapper {
                 .build();
     }
 
+    // Entity to DTO - READ
     public static AccountDto accountEntityToAccountDto(
             Accounts account) {
 
@@ -26,5 +29,13 @@ public final class AccountMapper {
                 .accountType(account.getAccountType())
                 .branchAddress(account.getBranchAddress())
                 .build();
+    }
+
+    // Update existing Entity - UPDATE
+    public static void updateAccountEntity(
+            AccountDto dto, Accounts account) {
+
+        account.setAccountType(dto.getAccountType());
+        account.setBranchAddress(dto.getBranchAddress());
     }
 }

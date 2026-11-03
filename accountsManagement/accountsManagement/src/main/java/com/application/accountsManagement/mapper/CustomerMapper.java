@@ -2,11 +2,14 @@
 package com.application.accountsManagement.mapper;
 
 import com.application.accountsManagement.entity.Customer;
-import com.application.accountsManagement.model.AccountDto;
 import com.application.accountsManagement.model.CustomerDto;
 
 public final class CustomerMapper {
 
+    private CustomerMapper() {
+    }
+
+    // DTO to Entity - CREATE
     public static Customer customerDtoToCustomerEntity(
             CustomerDto dto) {
 
@@ -17,6 +20,7 @@ public final class CustomerMapper {
                 .build();
     }
 
+    // Entity to DTO - READ
     public static CustomerDto customerEntityToCustomerDto(
             Customer customer) {
 
@@ -24,9 +28,15 @@ public final class CustomerMapper {
                 .name(customer.getName())
                 .email(customer.getEmail())
                 .mobileNumber(customer.getMobileNumber())
-                .accountsModel(AccountDto.builder().build())
                 .build();
     }
 
+    // Update existing Entity - UPDATE
+    public static void updateCustomerEntity(
+            CustomerDto dto, Customer customer) {
 
+        customer.setName(dto.getName());
+        customer.setEmail(dto.getEmail());
+        customer.setMobileNumber(dto.getMobileNumber());
+    }
 }
